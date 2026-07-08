@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "96a3e44c62a8591347be",
+  "position": {
+    "x": 179.18225918225917,
+    "y": 117.97643797643796,
+    "z": 2000,
+    "height": 32.820512820512818,
+    "width": 242.16216216216213,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Revenue · EBITDA · Net income, 2023-2029",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#666666"
+                    }
+                  },
+                  {
+                    "value": "\t\t",
+                    "textStyle": {
+                      "color": "#666666"
+                    }
+                  }
+                ],
+                "listType": "bullet"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

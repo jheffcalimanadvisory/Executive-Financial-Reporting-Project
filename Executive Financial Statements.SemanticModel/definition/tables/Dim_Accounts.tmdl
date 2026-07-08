@@ -1,0 +1,119 @@
+table Dim_Accounts
+	lineageTag: ffd3ff52-b12a-4314-93ad-31edbbb8e540
+
+	column Account
+		dataType: string
+		lineageTag: 49824088-7c77-48ae-8f28-d3f3923d2092
+		summarizeBy: none
+		sourceColumn: Account
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountName
+		dataType: string
+		lineageTag: 58289762-2619-4b7f-989d-d72f90e7786c
+		summarizeBy: none
+		sourceColumn: AccountName
+		sortByColumn: Account
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountType
+		dataType: string
+		lineageTag: 287cb92b-391b-43cb-ad14-20bea26fad13
+		summarizeBy: none
+		sourceColumn: AccountType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Statement
+		dataType: string
+		lineageTag: cd4e1c68-65b1-4e7c-804e-3c261bd0a5ad
+		summarizeBy: none
+		sourceColumn: Statement
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSGroup
+		dataType: string
+		lineageTag: 9ecbebf4-5516-4a79-84f6-bf9f913a3b9f
+		summarizeBy: none
+		sourceColumn: FSGroup
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSSubgroup
+		dataType: string
+		lineageTag: 6f225ff7-031f-4629-bb73-d322f9845e80
+		summarizeBy: none
+		sourceColumn: FSSubgroup
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DisplayOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c162940-bcf7-4dda-af89-8e739f533a90
+		summarizeBy: sum
+		sourceColumn: DisplayOrder
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSGroupSort =
+			
+			LOOKUPVALUE(
+			    Dim_FSGroup[FSOrder],
+			    Dim_FSGroup[FSGroup], Dim_Accounts[FSGroup]
+			)
+		formatString: 0
+		lineageTag: 49284ef8-a41d-4b2f-af94-c803bf8b1255
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualSign = SWITCH(TRUE(), Dim_Accounts[FSGroup] = "Deductions", 1, Dim_Accounts[AccountType] = "Revenue", -1, Dim_Accounts[AccountType] = "Liability", -1, Dim_Accounts[AccountType] = "Equity", -1, 1)
+		dataType: int64
+		isHidden
+		lineageTag: 062624e9-f197-4ca6-8e79-b2216d637a1a
+
+	column BudgetSign = SWITCH(TRUE(), Dim_Accounts[FSGroup] = "Deductions", -1, Dim_Accounts[AccountType] = "Revenue", -1, Dim_Accounts[AccountType] = "Liability", -1, Dim_Accounts[AccountType] = "Equity", -1, 1)
+		dataType: int64
+		isHidden
+		lineageTag: 5fd61444-499a-4d39-acf9-47b869727290
+
+	partition Dim_Accounts = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Power BI\Financial Statements\Enterprise_GL_Model_IT01_2025.xlsx"), null, true),
+				    Dim_Accounts_Sheet = Source{[Item="Dim_Accounts",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Dim_Accounts_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Account", Int64.Type}, {"AccountName", type text}, {"AccountType", type text}, {"Statement", type text}, {"FSGroup", type text}, {"FSSubgroup", type text}, {"DisplayOrder", Int64.Type}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"Account", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

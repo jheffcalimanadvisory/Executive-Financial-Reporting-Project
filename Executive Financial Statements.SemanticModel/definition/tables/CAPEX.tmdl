@@ -1,0 +1,78 @@
+table CAPEX
+	lineageTag: 89d371ae-3c9b-46fd-b5f1-65a1f3527f65
+
+	column CapexDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 012ffb95-af61-4628-902b-1b185e49c0c6
+		summarizeBy: none
+		sourceColumn: CapexDate
+
+		variation Variation
+			isDefault
+			relationship: 52178f40-d0b0-4f03-9cc5-7450a6bcc5cd
+			defaultHierarchy: LocalDateTable_7be8b5ff-8dd2-4ba5-8249-6ad0e5dea457.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Project
+		dataType: string
+		lineageTag: af9dba81-0fb3-4ae1-b235-057df0b5faf1
+		summarizeBy: none
+		sourceColumn: Project
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostCenter
+		dataType: string
+		lineageTag: b7d3b007-c887-4622-b9d1-06afc4cff483
+		summarizeBy: none
+		sourceColumn: CostCenter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entity
+		dataType: string
+		lineageTag: c1b51b01-1537-4e05-8d56-b52a7a7fef9e
+		summarizeBy: none
+		sourceColumn: Entity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CapexAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: bdd6cd4d-9f06-4849-b903-3b99cd9d7060
+		summarizeBy: sum
+		sourceColumn: CapexAmount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CAPEX = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Power BI\Financial Statements\Enterprise_GL_Model_IT01_2025.xlsx"), null, true),
+				    CAPEX_Sheet = Source{[Item="CAPEX",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(CAPEX_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CapexDate", Int64.Type}, {"Project", type text}, {"CostCenter", type text}, {"Entity", type text}, {"CapexAmount", Int64.Type}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"CapexDate", type date}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

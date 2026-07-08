@@ -1,0 +1,107 @@
+/// Year-end BS snapshots per year. 330100=Current Year Result. Equation balances per year.
+table Opening_Balances
+	lineageTag: 774bb534-d9ca-41dd-971c-c040326426f8
+
+	column OB_Date
+		lineageTag: 0bdc9d4b-b59a-4085-b909-9c02d6d392c5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OB_Date]
+
+		variation Variation
+			isDefault
+			relationship: f579fe46-7975-42cc-a60a-585bcbfdf076
+			defaultHierarchy: LocalDateTable_797a8caf-1a34-4de2-b3a8-6f228f071b3c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column OB_Account
+		lineageTag: 3ba2ca9e-bbf8-450b-b3f4-4af20880004a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [OB_Account]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OB_Amount
+		lineageTag: c72e7030-6b1a-4f00-9e0f-c1b6fa5f3a90
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [OB_Amount]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OB_Type
+		lineageTag: cfe8a60f-640a-439c-8a5b-17f3d0c64ab3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OB_Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OB_Group
+		lineageTag: e507bcd6-cd9c-4ea4-9bc2-6d137225439e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OB_Group]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Opening_Balances = calculated
+		mode: import
+		source =
+				UNION(
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",110100,"OB_Amount",500000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",110200,"OB_Amount",147189.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",120100,"OB_Amount",18000000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",120200,"OB_Amount",7000000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",130100,"OB_Amount",250000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",140100,"OB_Amount",15000000.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",140200,"OB_Amount",42000000.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",140300,"OB_Amount",-4006571.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",230100,"OB_Amount",15000000.0,"OB_Type","Liability","OB_Group","Long-term Liabilities"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",230200,"OB_Amount",5000000.0,"OB_Type","Liability","OB_Group","Long-term Liabilities"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",310100,"OB_Amount",45000000.0,"OB_Type","Equity","OB_Group","Equity"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",320100,"OB_Amount",19960854.0,"OB_Type","Equity","OB_Group","Equity"),
+				ROW("OB_Date",DATE(2023,12,31),"OB_Account",330100,"OB_Amount",-13237552.0,"OB_Type","Equity","OB_Group","Equity"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",110100,"OB_Amount",750000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",110200,"OB_Amount",305490.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",120100,"OB_Amount",19500000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",120200,"OB_Amount",7500000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",130100,"OB_Amount",320000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",140100,"OB_Amount",17500000.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",140200,"OB_Amount",42000000.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",140300,"OB_Amount",-5500000.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",230100,"OB_Amount",13000000.0,"OB_Type","Liability","OB_Group","Long-term Liabilities"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",230200,"OB_Amount",4200000.0,"OB_Type","Liability","OB_Group","Long-term Liabilities"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",310100,"OB_Amount",45000000.0,"OB_Type","Equity","OB_Group","Equity"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",320100,"OB_Amount",31230856.0,"OB_Type","Equity","OB_Group","Equity"),
+				ROW("OB_Date",DATE(2024,12,31),"OB_Account",330100,"OB_Amount",-26238924.0,"OB_Type","Equity","OB_Group","Equity"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",110100,"OB_Amount",1200000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",110200,"OB_Amount",475298.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",120100,"OB_Amount",21000000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",120200,"OB_Amount",8000000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",130100,"OB_Amount",280000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",140100,"OB_Amount",20000000.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",140200,"OB_Amount",42000000.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",140300,"OB_Amount",-7200000.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",230100,"OB_Amount",11000000.0,"OB_Type","Liability","OB_Group","Long-term Liabilities"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",230200,"OB_Amount",3400000.0,"OB_Type","Liability","OB_Group","Long-term Liabilities"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",310100,"OB_Amount",45000000.0,"OB_Type","Equity","OB_Group","Equity"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",320100,"OB_Amount",6663392.0,"OB_Type","Equity","OB_Group","Equity"),
+				ROW("OB_Date",DATE(2025,12,31),"OB_Account",330100,"OB_Amount",-3961805.0,"OB_Type","Equity","OB_Group","Equity"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",110100,"OB_Amount",500000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",110200,"OB_Amount",527823.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",120100,"OB_Amount",22000000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",120200,"OB_Amount",8300000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",130100,"OB_Amount",250000.0,"OB_Type","Asset","OB_Group","Current Assets"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",140100,"OB_Amount",21000000.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",140200,"OB_Amount",42000000.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",140300,"OB_Amount",-8750000.0,"OB_Type","Asset","OB_Group","Non-current Assets"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",230100,"OB_Amount",9000000.0,"OB_Type","Liability","OB_Group","Long-term Liabilities"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",230200,"OB_Amount",2600000.0,"OB_Type","Liability","OB_Group","Long-term Liabilities"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",310100,"OB_Amount",45000000.0,"OB_Type","Equity","OB_Group","Equity"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",320100,"OB_Amount",12736908.0,"OB_Type","Equity","OB_Group","Equity"),
+				ROW("OB_Date",DATE(2026,12,31),"OB_Account",330100,"OB_Amount",-10369686.0,"OB_Type","Equity","OB_Group","Equity")
+				)
+

@@ -1,0 +1,164 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 751,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 744.36163941535983,
+            "y": 508.6624963162173
+          },
+          "nodeIndex": "CAPEX",
+          "nodeLineageTag": "89d371ae-3c9b-46fd-b5f1-65a1f3527f65",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 404.1847511806298,
+            "y": 335
+          },
+          "nodeIndex": "Dim_Accounts",
+          "nodeLineageTag": "ffd3ff52-b12a-4314-93ad-31edbbb8e540",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 751.36163941535983,
+            "y": 0
+          },
+          "nodeIndex": "GL_Actual",
+          "nodeLineageTag": "8733945c-019b-4663-b16c-129614b4d22f",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 122,
+            "y": 14
+          },
+          "nodeIndex": "GL_Budget",
+          "nodeLineageTag": "1f56075d-3672-40c3-9955-b3063b5cab09",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 85.361639415359832,
+            "y": 514.33124815810868
+          },
+          "nodeIndex": "Dim_Date",
+          "nodeLineageTag": "5acac8a6-be81-4eef-90ab-3539822c888d",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1016.3616394153598,
+            "y": 61.165624079054339
+          },
+          "nodeIndex": "M_Measures",
+          "nodeLineageTag": "0686b20f-f7b0-4b8f-b330-dd1b0c0c4dbc",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 985.36163941535983,
+            "y": 316.16562407905434
+          },
+          "nodeIndex": "Dim_FSGroup",
+          "nodeLineageTag": "393cd358-80f4-41f1-9e05-62bd4bac4a51",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1264.3616394153598,
+            "y": 312.16562407905434
+          },
+          "nodeIndex": "INCOME_Structure",
+          "nodeLineageTag": "071a3746-2d06-4905-99a7-83893c90a2c6",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1750.3616394153598,
+            "y": 233.16562407905434
+          },
+          "nodeIndex": "CF_Structure",
+          "nodeLineageTag": "7872719e-bc8e-46bb-b3ae-7730ffecd09a",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1949,
+            "y": 257.16562407905434
+          },
+          "nodeIndex": "Opening_Balances",
+          "nodeLineageTag": "774bb534-d9ca-41dd-971c-c040326426f8",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2346.2767211692808,
+            "y": 257.16562407905434
+          },
+          "nodeIndex": "BS_Structure",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

@@ -1,0 +1,112 @@
+table INCOME_Structure
+	lineageTag: 071a3746-2d06-4905-99a7-83893c90a2c6
+
+	column FSGroup
+		lineageTag: 4ec91286-fc3a-4a3f-8d63-16979ed391b6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [FSGroup]
+		sortByColumn: WaterfallOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSSubgroup
+		lineageTag: f254c07a-d072-4527-ae29-a820cab7f2b9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [FSSubgroup]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		isHidden
+		formatString: 0
+		lineageTag: 91bbe3bd-9e79-4d57-8c8c-ffabb80be57c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountFilter
+		isHidden
+		lineageTag: 066bddda-26f7-4e79-828c-150c88576382
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AccountFilter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Hidden' = REPT(" ", [Order])
+		lineageTag: 566a0d31-7133-4567-b331-d0429d8fe37b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column WaterfallOrder
+		isHidden
+		lineageTag: f9ad1731-3313-4f82-9dec-5ecc27650faf
+		isNameInferred
+		sourceColumn: [WaterfallOrder]
+
+	column RowLevel
+		lineageTag: 3f573fd8-b003-4b03-8ba5-84c88f939384
+		isNameInferred
+		sourceColumn: [RowLevel]
+
+	column Item
+		lineageTag: 1cea12c2-77ed-4e84-be89-50d250a76ec0
+		sourceColumn: [DisplayLabel]
+		sortByColumn: Order
+
+	column IsMargin
+		isHidden
+		lineageTag: 76ec325c-2e28-4fb1-81a3-b2a44fa2becd
+		isNameInferred
+		sourceColumn: [IsMargin]
+
+	partition INCOME_Structure = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "FSGroup",       STRING,
+				    "FSSubgroup",    STRING,
+				    "Order",         INTEGER,
+				    "AccountFilter", STRING,
+				    "WaterfallOrder",INTEGER,
+				    "RowLevel",      STRING,
+				    "DisplayLabel",  STRING,
+				    "IsMargin",      BOOLEAN,
+				{
+				    {"Revenue",           "Gross Revenue",              1,  "Revenue",           1,  "Header",    "REVENUE",                                    FALSE},
+				    {"Revenue",           "Gross Revenue",              2,  "Revenue",           1,  "Detail",    "      Gross Revenue",                        FALSE},
+				    {"Deductions",        "Revenue Deductions",         3,  "Deductions",        0,  "Detail",    "      Revenue Deductions",                    FALSE},
+				    {"Net Revenue",       "Net Revenue",                4,  "Revenue",           0,  "Subtotal",  "  Net Revenue",                              FALSE},
+				    {"COGS",              "Material Costs",             5,  "COGS",              2,  "Header",    "COST OF GOODS SOLD",                          FALSE},
+				    {"COGS",              "Material Costs",             6,  "COGS",              2,  "Detail",    "      Material Costs",                         FALSE},
+				    {"COGS",              "Logistics Costs",            7,  "COGS",              2,  "Detail",    "      Logistics Costs",                        FALSE},
+				    {"COGS",              "Production Labor",           8,  "COGS",              2,  "Detail",    "      Production Labor",                       FALSE},
+				    {"COGS Total",        "Total COGS",                 9,  "COGS",              0,  "Subtotal",  "  Total COGS",                                FALSE},
+				    {"Gross Profit",      "Gross Profit",               10, "Gross Profit",      3,  "Total",     "GROSS PROFIT",                               FALSE},
+				    {"Operating Expenses","Administrative",             11, "Operating Expenses",4,  "Header",    "OPERATING EXPENSES (OPEX)",                   FALSE},
+				    {"Operating Expenses","Administrative",             12, "Operating Expenses",4,  "Detail",    "      Administrative",                         FALSE},
+				    {"Operating Expenses","Commercial",                 13, "Operating Expenses",4,  "Detail",    "      Commercial",                             FALSE},
+				    {"Operating Expenses","Facilities",                 14, "Operating Expenses",4,  "Detail",    "      Facilities",                             FALSE},
+				    {"Operating Expenses","Personnel",                  15, "Operating Expenses",4,  "Detail",    "      Personnel",                              FALSE},
+				    {"Operating Expenses","Technology",                 16, "Operating Expenses",4,  "Detail",    "      Technology",                             FALSE},
+				    {"OPEX Total",        "Total OPEX",                 17, "Operating Expenses",0,  "Subtotal",  "  Total OPEX",                                FALSE},
+				    {"EBITDA",            "EBITDA",                     18, "EBITDA",            5,  "Total",     "EBITDA",                                     FALSE},
+				    {"D&A",               "Depreciation & Amortization",19, "D&A",               6,  "Header",    "DEPRECIATION & AMORTIZATION",                 FALSE},
+				    {"D&A",               "Depreciation & Amortization",20, "D&A",               6,  "Detail",    "      Depreciation & Amort.",                 FALSE},
+				    {"EBIT",              "EBIT",                       21, "EBIT",              7,  "Total",     "EBIT (Operating Income)",                     FALSE},
+				    {"Financial Result",  "Financial Expenses",         22, "Financial Result",  8,  "Header",    "FINANCIAL ITEMS",                             FALSE},
+				    {"Financial Result",  "Financial Expenses",         23, "Financial Result",  8,  "Detail",    "      Financial Expenses",                    FALSE},
+				    {"Financial Result",  "Financial Income",           24, "Financial Result",  8,  "Detail",    "      Financial Income",                      FALSE},
+				    {"EBT",               "EBT",                        25, "Financial Result",  0,  "Total",     "EBT (Income Before Taxes)",                   FALSE},
+				    {"Taxes",             "Income Taxes",               26, "Taxes",             9,  "Header",    "TAXES",                                      FALSE},
+				    {"Taxes",             "Income Taxes",               27, "Taxes",             9,  "Detail",    "      Income Taxes",                          FALSE},
+				    {"Net Income",        "Net Income",                 28, "Net Income",        10, "GrandTotal","NET INCOME",                                 FALSE}
+				})
+
+	annotation PBI_Id = 87149d9d02e14c749c6ab7cf6f5c2095
+

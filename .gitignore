@@ -1,0 +1,35 @@
+# Power BI local/user-specific state (never portable across machines)
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# Claude Code local session config
+.claude/
+
+# Legacy .pbix binaries (superseded by the .pbip project format)
+*.pbix
+*.pbix.bak
+
+# Raw source workbook and superseded/draft versions (excluded to keep the
+# repo focused on the model and its polished deliverables)
+Enterprise_GL_Model_IT01_2025.xlsx
+Enterprise_GL_Model_IT01_2025ss.xlsx
+Caliman Advisory - Management Report YTD Apr 2026.docx
+Management report.pdf
+Management test 1.pdf
+
+# Build/export scratch directories from earlier development
+Prints/
+Sheets/
+TMDL_Export/
+probe_nav/
+read_pages/
+CREATE_BS_PAGE_1.ps1
+FIX_BOM.ps1
+
+# Raw screenshot staging folder - the model diagram is committed as
+# Images/07-data-model.png instead
+Model/
+
+# OS/editor noise
+Thumbs.db
+.DS_Store

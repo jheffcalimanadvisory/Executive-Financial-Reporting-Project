@@ -1,0 +1,57 @@
+/// Cash Flow Statement row structure — drives CF matrix visual ordering and hierarchy
+table CF_Structure
+	lineageTag: 7872719e-bc8e-46bb-b3ae-7730ffecd09a
+
+	column CFGroup
+		lineageTag: c623ee14-05f7-4884-ae9c-86f1db3ecefb
+		isNameInferred
+		sourceColumn: [CFGroup]
+
+	column CFSubgroup
+		lineageTag: 2c487000-3f62-4ef7-93b7-969f1f77d4ee
+		isNameInferred
+		sourceColumn: [CFSubgroup]
+
+	column LineItem
+		lineageTag: acd81028-308b-4465-92eb-ced7d837ccfb
+		isNameInferred
+		sourceColumn: [LineItem]
+
+	column CFType
+		lineageTag: 404b96f5-5026-4c23-9e71-2ba6febd8d7a
+		isNameInferred
+		sourceColumn: [CFType]
+
+	column DisplayOrder
+		lineageTag: e5abdbb1-5f68-49f6-9e88-ae8e2a556796
+		isNameInferred
+		sourceColumn: [DisplayOrder]
+
+	column IsTotal
+		lineageTag: 33c0b04c-c28e-4ac3-93d2-40ab32d3bdbd
+		isNameInferred
+		sourceColumn: [IsTotal]
+
+	column RowLevel
+		lineageTag: ee7820ae-3842-4c65-9e3a-121d062646c7
+		isNameInferred
+		sourceColumn: [RowLevel]
+
+	/// Sort order for the Cash Bridge waterfall visual (Opening -> Operating -> Investing -> Financing -> Closing). Blank for rows not used in the bridge.
+	column BridgeOrder = SWITCH(TRUE(), CF_Structure[CFGroup]="Opening Cash Balance", 1, CF_Structure[CFGroup]="TOTAL OPERATING CF", 2, CF_Structure[CFGroup]="TOTAL INVESTING CF", 3, CF_Structure[CFGroup]="TOTAL FINANCING CF", 4, CF_Structure[CFGroup]="CLOSING CASH BALANCE", 5, BLANK())
+		dataType: int64
+		formatString: 0
+		displayFolder: Cash Flow
+		lineageTag: af101614-8501-47a4-9210-2ac4523f66de
+
+	/// Bridge step label for the waterfall visual, sorted by BridgeOrder. Separate from CFGroup so this sort doesn't affect other visuals using CFGroup.
+	column BridgeLabel = IF(ISBLANK(CF_Structure[BridgeOrder]), BLANK(), CF_Structure[CFGroup])
+		dataType: string
+		displayFolder: Cash Flow
+		lineageTag: 1ad2b0e1-8d4e-4f1c-a94a-6e05977c06f2
+		sortByColumn: BridgeOrder
+
+	partition CF_Structure = calculated
+		mode: import
+		source = DATATABLE("CFGroup", STRING, "CFSubgroup", STRING, "LineItem", STRING, "CFType", STRING, "DisplayOrder", INTEGER, "IsTotal", BOOLEAN, "RowLevel", STRING, { {"Operating Activities", "Profitability", "Net Income", "Operating", 1, FALSE, "Detail"}, {"Operating Activities", "Non-Cash", "Depreciation & Amortisation", "Operating", 2, FALSE, "Detail"}, {"Operating Activities", "Non-Cash", "Impairments", "Operating", 3, FALSE, "Detail"}, {"Operating Activities", "Non-Cash", "Non-cash Provisions", "Operating", 4, FALSE, "Detail"}, {"Operating Activities", "Working Capital", "Change in Accounts Receivable", "Operating", 5, FALSE, "Detail"}, {"Operating Activities", "Working Capital", "Change in Inventory", "Operating", 6, FALSE, "Detail"}, {"Operating Activities", "Working Capital", "Change in Other Current Liabilities", "Operating", 7, FALSE, "Detail"}, {"Operating Activities", "Working Capital", "Change in Other Working Capital", "Operating", 8, FALSE, "Detail"}, {"TOTAL OPERATING CF", "", "", "Operating", 9, TRUE, "Total"}, {"Investing Activities", "Capital Expenditure", "CAPEX", "Investing", 10, FALSE, "Detail"}, {"Investing Activities", "Capital Expenditure", "Change in Fixed Assets", "Investing", 11, FALSE, "Detail"}, {"TOTAL INVESTING CF", "", "", "Investing", 12, TRUE, "Total"}, {"Financing Activities", "Debt", "Change in Bank Loans", "Financing", 13, FALSE, "Detail"}, {"Financing Activities", "Debt", "Change in Lease Liabilities", "Financing", 14, FALSE, "Detail"}, {"TOTAL FINANCING CF", "", "", "Financing", 15, TRUE, "Total"}, {"NET CASH FLOW", "", "", "Net", 16, TRUE, "GrandTotal"}, {"Opening Cash Balance", "", "", "Balance", 17, FALSE, "Balance"}, {"CLOSING CASH BALANCE", "", "", "Balance", 18, TRUE, "Balance"} })
+

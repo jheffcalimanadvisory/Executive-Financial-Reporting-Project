@@ -1,0 +1,125 @@
+table GL_Actual
+	lineageTag: 8733945c-019b-4663-b16c-129614b4d22f
+
+	measure 'Sum of BudgetAmount % difference from Sum of Amount' =
+			
+			VAR __BASELINE_VALUE = SUM('GL_Actual'[Amount])
+			VAR __VALUE_TO_COMPARE = SUM('GL_Budget'[BudgetAmount])
+			RETURN
+				IF(
+					NOT ISBLANK(__VALUE_TO_COMPARE),
+					DIVIDE(__VALUE_TO_COMPARE - __BASELINE_VALUE, __BASELINE_VALUE)
+				)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9e6e841c-1e18-4ba6-862e-0ec87ed00362
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalPercentageDifference"
+				}
+
+		changedProperty = FormatString
+
+	column PostingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 03700348-325e-49cc-aeb9-a55ca7a95fe7
+		summarizeBy: none
+		sourceColumn: PostingDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DocumentNo
+		dataType: string
+		lineageTag: ceb77445-667a-4e65-baac-b596cc52dff8
+		summarizeBy: none
+		sourceColumn: DocumentNo
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account
+		dataType: string
+		lineageTag: 67de5e9b-0aee-463c-b17d-faead31c3abd
+		summarizeBy: none
+		sourceColumn: Account
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostCenter
+		dataType: string
+		lineageTag: 33cfcdc8-75a7-446d-8284-3642922ea8b5
+		summarizeBy: none
+		sourceColumn: CostCenter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entity
+		dataType: string
+		lineageTag: a4d64d58-3ef1-41fc-92e5-39c10fba1fb1
+		summarizeBy: none
+		sourceColumn: Entity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Debit
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d728c3f-50b3-477b-a4be-b8450fbb69c6
+		summarizeBy: sum
+		sourceColumn: Debit
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Credit
+		dataType: int64
+		formatString: 0
+		lineageTag: cb358ba3-2217-4eea-b411-f3486b01c3ca
+		summarizeBy: sum
+		sourceColumn: Credit
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: int64
+		formatString: 0
+		lineageTag: b7dce004-2763-4029-ab4b-437e44155e6c
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GL_Actual = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Power BI\Financial Statements\Enterprise_GL_Model_IT01_2025.xlsx"), null, true),
+				    GL_Actual_Sheet = Source{[Item="GL_Actual",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(GL_Actual_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PostingDate", Int64.Type}, {"DocumentNo", type text}, {"Account", Int64.Type}, {"CostCenter", type text}, {"Entity", type text}, {"Debit", Int64.Type}, {"Credit", Int64.Type}, {"Amount", Int64.Type}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"PostingDate", type date}, {"Account", type text}, {"DocumentNo", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

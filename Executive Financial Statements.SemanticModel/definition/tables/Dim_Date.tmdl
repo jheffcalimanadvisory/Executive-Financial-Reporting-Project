@@ -1,0 +1,95 @@
+table Dim_Date
+	lineageTag: 5acac8a6-be81-4eef-90ab-3539822c888d
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 0dca4606-0fba-4260-81f7-0b7375cd4fc9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: e0b6bf74-13c4-4a1c-9bf5-5bfde607e345
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 678e55f9-7a37-4f24-ac71-ffe1b1968eab
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 962a28fe-3420-4fed-91e4-74dd7b67daef
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Year'
+		lineageTag: b4c0b936-3194-490a-a25e-6e9d683fbedf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: ab3fbcf9-41d1-444a-a5bc-7877b678e26b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthShort =
+			
+			FORMAT(Dim_Date[Date],"MMM")
+		lineageTag: ef326644-495a-4270-ad86-49e313542959
+		summarizeBy: none
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE only for the current reporting year (dynamically = Forecast_BaseYear, the last year with actual GL data). Used as a page-level filter on Income Statement/Balance Sheet/Cash Flow/CAPEX to pin them to 'today' and hide 2027-2029, without touching any existing KPI measure. Auto-advances as new actual data loads - no hardcoding.
+	column IsCurrentReportingYear = Dim_Date[Year] = [Forecast_BaseYear]
+		dataType: boolean
+		lineageTag: 23142093-c426-482d-8175-9ff84942bdef
+
+	/// TRUE for years beyond the last year with actual GL data. Used as a page-level filter on Income Statement/Balance Sheet/Cash Flow/CAPEX to prevent forecast-only years (2027+) from appearing - those years belong exclusively on the Forecast page.
+	column IsForecastPeriod = Dim_Date[Year] > [Forecast_BaseYear]
+		dataType: boolean
+		lineageTag: abefc83d-d01d-4644-b5cb-6702461ef5b8
+
+	/// TRUE for any date beyond the last actual GL date ("today"). More granular than IsForecastPeriod (which only catches full future years) - this catches future months within the current year too (e.g., May-Dec 2026). Use this for page-level filters on trend charts/tables on Income Statement, Balance Sheet, Cash Flow, CAPEX - truncates them at real data instead of drawing frozen values into unknown dates. Forecast page should NOT use this filter.
+	column IsFutureDate = Dim_Date[Date] > [Forecast_LastActualDate]
+		dataType: boolean
+		lineageTag: b90d462e-4268-4e44-8451-53e05b93449f
+
+	partition Dim_Date = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    CALENDAR (DATE(2023,1,1), DATE(2029,12,31)),
+				    "Year", YEAR([Date]),
+				    "Month Number", MONTH([Date]),
+				    "Month", FORMAT([Date], "MMM"),
+				    "Month Year", FORMAT([Date], "MMM YYYY"),
+				    "Quarter", "Q" & FORMAT([Date], "Q")
+				)
+
+	annotation PBI_Id = 3f19c5f3e4724dd3a68a035878f20ca2
+

@@ -1,0 +1,118 @@
+table BS_Structure
+	lineageTag: 4e7fc69d-0cab-49e4-b93c-2c693ea50078
+
+	column AccountName
+		isHidden
+		lineageTag: c28b7085-d75b-45c9-ba35-b86725e2d1cc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AccountName]
+		sortByColumn: DisplayOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountType
+		isHidden
+		lineageTag: 1e74ef61-bb9b-4f84-a777-a4131b88f83a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AccountType]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DisplayOrder
+		isHidden
+		formatString: 0
+		lineageTag: 8f259494-8d4d-400a-858e-111a0049faa3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [DisplayOrder]
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsTotal
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fb4f03a8-05e4-4013-8c9f-09bfceed169c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [IsTotal]
+
+		annotation SummarizationSetBy = Automatic
+
+	column RowLevel
+		lineageTag: ecd42833-e082-4a6c-be8a-a2ea74c13274
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [RowLevel]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SectionOrder
+		isHidden
+		formatString: 0
+		lineageTag: 1a757fb0-0559-4d21-a555-d66d6f916ebd
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [SectionOrder]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DisplayLabel
+		lineageTag: 4343a6e2-029d-4d8a-a4b9-1d3fab55ac60
+		isNameInferred
+		sourceColumn: [DisplayLabel]
+		sortByColumn: DisplayOrder
+
+	partition BS_Structure = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "DisplayLabel", STRING,
+				    "AccountName",  STRING,
+				    "AccountType",  STRING,
+				    "DisplayOrder", INTEGER,
+				    "IsTotal",      BOOLEAN,
+				    "RowLevel",     STRING,
+				    "SectionOrder", INTEGER,
+				    {
+				        {"Assets",                              "",                            "Header",    1,  TRUE,  "Header",     1},
+				        {"  Current Assets",                    "",                            "Asset",     2,  FALSE, "GroupHeader",2},
+				        {"    Accounts Receivable",             "Accounts Receivable",         "Asset",     3,  FALSE, "Detail",     2},
+				        {"    Bank Accounts",                   "Bank Accounts",               "Asset",     4,  FALSE, "Detail",     2},
+				        {"    Cash",                            "Cash",                        "Asset",     5,  FALSE, "Detail",     2},
+				        {"    Inventory",                       "Inventory",                   "Asset",     6,  FALSE, "Detail",     2},
+				        {"    Prepaid Expenses",                "Prepaid Expenses",            "Asset",     7,  FALSE, "Detail",     2},
+				        {"  Total Current Assets",              "Total Current Assets",        "Asset",     8,  TRUE,  "Subtotal",   3},
+				        {"  Non-current Assets",                "",                            "Asset",     9,  FALSE, "GroupHeader",4},
+				        {"    Machinery & Equipment",           "Machinery & Equipment",       "Asset",     10, FALSE, "Detail",     4},
+				        {"    Buildings",                       "Buildings",                   "Asset",     11, FALSE, "Detail",     4},
+				        {"    Accum. Depreciation",             "Accum. Depreciation",         "Asset",     12, FALSE, "Detail",     4},
+				        {"  Total Non-current Assets",          "Total Non-current Assets",    "Asset",     13, TRUE,  "Subtotal",   5},
+				        {"TOTAL ASSETS",                        "TOTAL ASSETS",                "Asset",     14, TRUE,  "Total",      6},
+				        {"",                                    "",                            "Spacer",    15, FALSE, "Spacer",     7},
+				        {"Equity",                              "",                            "Header",    16, TRUE,  "Header",     8},
+				        {"    Share Capital",                   "Share Capital",               "Equity",    17, FALSE, "Detail",     8},
+				        {"    Retained Earnings",               "Retained Earnings",           "Equity",    18, FALSE, "Detail",     8},
+				        {"    Current Year Result",             "Current Year Result",         "Equity",    19, FALSE, "Detail",     8},
+				        {"  Total Equity",                      "TOTAL EQUITY",                "Equity",    20, TRUE,  "Subtotal",   9},
+				        {"TOTAL EQUITY",                        "TOTAL EQUITY",                "Equity",    21, TRUE,  "Total",      10},
+				        {"",                                    "",                            "Spacer",    22, FALSE, "Spacer",     11},
+				        {"Liabilities",                         "",                            "Header",    23, TRUE,  "Header",     12},
+				        {"  Current Liabilities",               "",                            "Liability", 24, FALSE, "GroupHeader",13},
+				        {"    Accounts Payable",                "Accounts Payable",            "Liability", 25, FALSE, "Detail",     13},
+				        {"    Salaries Payable",                "Salaries Payable",            "Liability", 26, FALSE, "Detail",     13},
+				        {"    Taxes Payable",                   "Taxes Payable",               "Liability", 27, FALSE, "Detail",     13},
+				        {"  Total Current Liabilities",         "Total Current Liabilities",   "Liability", 28, TRUE,  "Subtotal",   14},
+				        {"  Long-term Liabilities",             "",                            "Liability", 29, FALSE, "GroupHeader",15},
+				        {"    Bank Loans",                      "Bank Loans",                  "Liability", 30, FALSE, "Detail",     15},
+				        {"    Lease Liabilities",               "Lease Liabilities",           "Liability", 31, FALSE, "Detail",     15},
+				        {"  Total Long-term Liabilities",       "Total Long-term Liabilities", "Liability", 32, TRUE,  "Subtotal",   16},
+				        {"TOTAL LIABILITIES",                   "TOTAL LIABILITIES",           "Liability", 33, TRUE,  "Total",      17},
+				        {"",                                    "",                            "Spacer",    34, FALSE, "Spacer",     18},
+				        {"TOTAL LIABILITIES + EQUITY",          "TOTAL LIABILITIES + EQUITY",  "Equity",    35, TRUE,  "GrandTotal", 19}
+				    }
+				)
+
+	annotation PBI_Id = 7b5c0201ba5a46d1824daca038291cd7
+

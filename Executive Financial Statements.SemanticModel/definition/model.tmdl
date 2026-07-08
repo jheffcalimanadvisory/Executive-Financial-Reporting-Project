@@ -1,0 +1,31 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: it-IT
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["CAPEX","Dim_Accounts","GL_Actual","GL_Budget"]
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
+
+ref table CAPEX
+ref table DateTableTemplate_0cd43a28-713d-4b23-816a-b4fdef43ecb5
+ref table LocalDateTable_7be8b5ff-8dd2-4ba5-8249-6ad0e5dea457
+ref table Dim_Accounts
+ref table GL_Actual
+ref table GL_Budget
+ref table Dim_Date
+ref table M_Measures
+ref table Dim_FSGroup
+ref table INCOME_Structure
+ref table CF_Structure
+ref table Opening_Balances
+ref table LocalDateTable_797a8caf-1a34-4de2-b3a8-6f228f071b3c
+ref table BS_Structure
+
+ref cultureInfo en-US
+

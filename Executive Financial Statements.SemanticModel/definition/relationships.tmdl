@@ -1,0 +1,30 @@
+relationship 52178f40-d0b0-4f03-9cc5-7450a6bcc5cd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CAPEX.CapexDate
+	toColumn: LocalDateTable_7be8b5ff-8dd2-4ba5-8249-6ad0e5dea457.Date
+
+relationship AutoDetected_ac59ca57-cd12-4a20-8ba8-de4b6085c3e5
+	fromColumn: GL_Actual.Account
+	toColumn: Dim_Accounts.Account
+
+relationship AutoDetected_f184ce08-a432-40dd-9e3f-cf5e4da89937
+	fromColumn: GL_Budget.Account
+	toColumn: Dim_Accounts.Account
+
+relationship d3a6a532-02d9-8217-489f-9b48a246bc5e
+	fromColumn: Dim_Accounts.FSGroup
+	toColumn: Dim_FSGroup.FSGroup
+
+relationship 2cb71ce6-77d2-b867-af5f-d1ede29ae531
+	fromColumn: GL_Actual.PostingDate
+	toColumn: Dim_Date.Date
+
+relationship 317996cd-17ed-1015-cd2b-05e64540267c
+	fromColumn: GL_Budget.BudgetDate
+	toColumn: Dim_Date.Date
+
+relationship f579fe46-7975-42cc-a60a-585bcbfdf076
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Opening_Balances.OB_Date
+	toColumn: LocalDateTable_797a8caf-1a34-4de2-b3a8-6f228f071b3c.Date
+

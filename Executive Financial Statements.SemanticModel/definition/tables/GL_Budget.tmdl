@@ -1,0 +1,73 @@
+table GL_Budget
+	lineageTag: 1f56075d-3672-40c3-9955-b3063b5cab09
+
+	column BudgetDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f1b7dfe5-817d-44d7-a54b-cd85fe7d5f1c
+		summarizeBy: none
+		sourceColumn: BudgetDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Account
+		dataType: string
+		lineageTag: f1e1f02f-58f9-405c-8b79-6a1375eb2d3f
+		summarizeBy: none
+		sourceColumn: Account
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostCenter
+		dataType: string
+		lineageTag: 42c9050b-4f4f-448b-a6a3-e5dee4b2c8bb
+		summarizeBy: none
+		sourceColumn: CostCenter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entity
+		dataType: string
+		lineageTag: 336ab7bf-6f6f-4c64-bb02-8997810738a1
+		summarizeBy: none
+		sourceColumn: Entity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column BudgetAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 27bd1ff5-be14-4313-aa98-cb6a25057454
+		summarizeBy: sum
+		sourceColumn: BudgetAmount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GL_Budget = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Power BI\Financial Statements\Enterprise_GL_Model_IT01_2025.xlsx"), null, true),
+				    GL_Budget_Sheet = Source{[Item="GL_Budget",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(GL_Budget_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"BudgetDate", Int64.Type}, {"Account", Int64.Type}, {"CostCenter", type text}, {"Entity", type text}, {"BudgetAmount", Int64.Type}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"BudgetDate", type date}, {"Account", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

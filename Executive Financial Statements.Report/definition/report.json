@@ -1,0 +1,254 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY26SU05",
+      "reportVersionAtImport": {
+        "visual": "2.9.0",
+        "report": "3.3.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Caliman_Executive_Blue_Dark06767046209592908.json",
+      "reportVersionAtImport": {
+        "visual": "2.10.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "htmlContent443BE3AD55E043BF878BED274D3A6855",
+    "LaconicCardFreeC4A74023FBD644529F9068B327CF4BF9",
+    "briqlabScroller5CF8B81920EB435494A08E79D75B53E7"
+  ],
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY26SU05",
+          "path": "BaseThemes/CY26SU05.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Caliman_Executive_Blue_Dark06767046209592908.json",
+          "path": "Caliman_Executive_Blue_Dark06767046209592908.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "Progetto_senza_titolo_(11)0327894048085855.png",
+          "path": "Progetto_senza_titolo_(11)0327894048085855.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(11)14181041643962844.png",
+          "path": "Progetto_senza_titolo_(11)14181041643962844.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(11)2966402620092057.png",
+          "path": "Progetto_senza_titolo_(11)2966402620092057.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(11)5924596049150632.png",
+          "path": "Progetto_senza_titolo_(11)5924596049150632.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(11)7523811675504032.png",
+          "path": "Progetto_senza_titolo_(11)7523811675504032.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(11)9098313342497782.png",
+          "path": "Progetto_senza_titolo_(11)9098313342497782.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(12)03378392290086785.png",
+          "path": "Progetto_senza_titolo_(12)03378392290086785.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(12)036980907909101135.png",
+          "path": "Progetto_senza_titolo_(12)036980907909101135.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(12)0709887554710783.png",
+          "path": "Progetto_senza_titolo_(12)0709887554710783.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(12)1992858369408551.png",
+          "path": "Progetto_senza_titolo_(12)1992858369408551.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(12)4416070322943273.png",
+          "path": "Progetto_senza_titolo_(12)4416070322943273.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(12)9856031232340953.png",
+          "path": "Progetto_senza_titolo_(12)9856031232340953.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(15)14052089960568603.png",
+          "path": "Progetto_senza_titolo_(15)14052089960568603.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(15)18835593690427144.png",
+          "path": "Progetto_senza_titolo_(15)18835593690427144.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(15)29178335815884004.png",
+          "path": "Progetto_senza_titolo_(15)29178335815884004.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(15)5640145502926627.png",
+          "path": "Progetto_senza_titolo_(15)5640145502926627.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(15)6835967538663257.png",
+          "path": "Progetto_senza_titolo_(15)6835967538663257.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(15)7165863572094632.png",
+          "path": "Progetto_senza_titolo_(15)7165863572094632.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(16)2610297392472747.png",
+          "path": "Progetto_senza_titolo_(16)2610297392472747.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(16)2851749997059069.png",
+          "path": "Progetto_senza_titolo_(16)2851749997059069.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(16)3139975538470302.png",
+          "path": "Progetto_senza_titolo_(16)3139975538470302.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(16)3531727423994844.png",
+          "path": "Progetto_senza_titolo_(16)3531727423994844.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(16)3690034446555036.png",
+          "path": "Progetto_senza_titolo_(16)3690034446555036.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(16)6397738893587221.png",
+          "path": "Progetto_senza_titolo_(16)6397738893587221.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(17)0021273538961933403.png",
+          "path": "Progetto_senza_titolo_(17)0021273538961933403.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(17)04647021262778095.png",
+          "path": "Progetto_senza_titolo_(17)04647021262778095.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(17)17197204704696833.png",
+          "path": "Progetto_senza_titolo_(17)17197204704696833.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(17)3676236523848293.png",
+          "path": "Progetto_senza_titolo_(17)3676236523848293.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(17)5961922843875148.png",
+          "path": "Progetto_senza_titolo_(17)5961922843875148.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(17)6842738668729745.png",
+          "path": "Progetto_senza_titolo_(17)6842738668729745.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(18)8348680374823998.png",
+          "path": "Progetto_senza_titolo_(18)8348680374823998.png",
+          "type": "Image"
+        },
+        {
+          "name": "Progetto_senza_titolo_(3)627085063950369.png",
+          "path": "Progetto_senza_titolo_(3)627085063950369.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  },
+  "slowDataSourceSettings": {
+    "isCrossHighlightingDisabled": false,
+    "isSlicerSelectionsButtonEnabled": false,
+    "isFilterSelectionsButtonEnabled": false,
+    "isApplyAllButtonEnabled": false
+  }
+}

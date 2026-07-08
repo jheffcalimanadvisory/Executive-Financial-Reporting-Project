@@ -1,0 +1,50 @@
+table Dim_FSGroup
+	lineageTag: 393cd358-80f4-41f1-9e05-62bd4bac4a51
+
+	column FSGroup
+		lineageTag: c2e3b120-d649-4957-8fa2-48fd9186d8d2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [FSGroup]
+		sortByColumn: FSOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSOrder
+		formatString: 0
+		lineageTag: e1ef5213-9c63-421e-8a98-616481240f68
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [FSOrder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_FSGroup = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "FSGroup", STRING,
+				    "FSOrder", INTEGER,
+				    {
+				        {"Revenue",1},
+				        {"Deductions",2},
+				        {"Gross Profit",3},
+				        {"COGS",4},
+				        {"Operating Expenses",5},
+				        {"EBITDA",6},
+				        {"D&A",7},
+				        {"EBIT",8},
+				        {"Financial Result",9},
+				        {"Taxes",10},
+				        {"Net Income",11},
+				        {"Current Assets",12},
+				        {"Non-current Assets",13},
+				        {"Current Liabilities",14},
+				        {"Long-term Liabilities",15},
+				        {"Equity",16}
+				    }
+				)
+
+	annotation PBI_Id = 56a986808d694e06aa5b5a489b01ba7a
+
