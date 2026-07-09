@@ -5,7 +5,7 @@
 
 **Caliman Advisory SRL — Year-to-Date Financial Performance, January–April 2026**
 
-[**▶ Open the Live Dashboard**](https://app.powerbi.com/view?r=eyJrIjoiZWQ4MzExZGUtNjg2MS00MDI1LTliODAtMjQxMDU5OTc4MDJhIiwidCI6IjhhNzA1MDNmLTI5N2UtNGRiZC05M2E2LTZkZDQ2OWFhOWJhZSJ9&embedImagePlaceholder=true)
+[**▶ Open the Live Dashboard**](https://app.powerbi.com/view?r=eyJrIjoiZWQ4MzExZGUtNjg2MS00MDI1LTliODAtMjQxMDU5OTc4MDJhIiwidCI6IjhhNzA1MDNmLTI5N2UtNGRiZC05M2E2LTZkZDQ2OWFhOWJhZSJ9&embedImagePlaceholder=true&pageName=7a86909d041bd54176e7)
 
 </div>
 
@@ -91,7 +91,7 @@ through the year.
 
 The live report is published to the web and embeddable:
 
-[**▶ Open the Live Dashboard**](https://app.powerbi.com/view?r=eyJrIjoiZWQ4MzExZGUtNjg2MS00MDI1LTliODAtMjQxMDU5OTc4MDJhIiwidCI6IjhhNzA1MDNmLTI5N2UtNGRiZC05M2E2LTZkZDQ2OWFhOWJhZSJ9&embedImagePlaceholder=true)
+[**▶ Open the Live Dashboard**](https://app.powerbi.com/view?r=eyJrIjoiZWQ4MzExZGUtNjg2MS00MDI1LTliODAtMjQxMDU5OTc4MDJhIiwidCI6IjhhNzA1MDNmLTI5N2UtNGRiZC05M2E2LTZkZDQ2OWFhOWJhZSJ9&embedImagePlaceholder=true&pageName=7a86909d041bd54176e7)
 
 <details>
 <summary>Embed HTML (for a personal site — GitHub strips &lt;iframe&gt; tags from rendered READMEs)</summary>
